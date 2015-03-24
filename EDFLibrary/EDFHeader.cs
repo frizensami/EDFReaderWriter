@@ -8,6 +8,16 @@ namespace EDFLibrary
 {
     class EDFHeader
     {
+        string version;
+        string localPatientIdent;
+        string localRecordingIdent;
+        string startdate;
         
+
+        public EDFHeader()
+        {
+            version = BuildHeader.buildHeader("0", 8);
+            Console.WriteLine(version);
+        }
     }
 }

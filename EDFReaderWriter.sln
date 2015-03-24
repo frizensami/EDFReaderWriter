@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EDFReaderWriter", "EDFReaderWriter\EDFReaderWriter.csproj", "{60B39EB4-5BCE-495D-BD60-39E183216A59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EDFLibrary", "EDFLibrary\EDFLibrary.csproj", "{7A21573A-1E2B-4283-A783-E658E3F7BFD6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{60B39EB4-5BCE-495D-BD60-39E183216A59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60B39EB4-5BCE-495D-BD60-39E183216A59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60B39EB4-5BCE-495D-BD60-39E183216A59}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7A21573A-1E2B-4283-A783-E658E3F7BFD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7A21573A-1E2B-4283-A783-E658E3F7BFD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7A21573A-1E2B-4283-A783-E658E3F7BFD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7A21573A-1E2B-4283-A783-E658E3F7BFD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
