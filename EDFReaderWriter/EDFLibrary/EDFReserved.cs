@@ -10,5 +10,6 @@ namespace EDFLibrary
     {
         public const string EDF_CONTINUOUS = "EDF+C";
         public const string EDF_DISCONTINUOUS = "EDF+D";
+        //public const string EDF_NOTPLUS = "";
     }
 }

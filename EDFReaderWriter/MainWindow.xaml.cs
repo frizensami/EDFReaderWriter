@@ -53,8 +53,8 @@ namespace EDFReaderWriter
             string patient = tbPatientCode.Text.Replace(' ','_') + " " + tbPatientSex.Text.Replace(' ','_') + " " + 
                              tbPatientBirthday.SelectedDate.Value.ToString("dd-MMM-yyyy").ToUpper() + " " + tbPatientName.Text.Replace(' ','_');
             string recording = "Startdate " + tbStartDate.SelectedDate.Value.ToString("dd-MMM-yyyy").ToUpper() + " "
-                                + tbPSGNumber.Text.Replace(' ', '_') + tbTechnicianCode.Text.Replace(' ', '_')
-                                + tbEquipCode.Text.Replace(' ', '_');
+                                + tbPSGNumber.Text.Replace(' ', '_') + " " + tbTechnicianCode.Text.Replace(' ', '_')
+                                + " " + tbEquipCode.Text.Replace(' ', '_');
 
             string startDate = "";
             if (tbStartDate.SelectedDate.Value.Year <= 2084)

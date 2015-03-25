@@ -7,9 +7,9 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <TextBox x:Name="tbVersion" HorizontalAlignment="Left" Height="20" Margin="46,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="21" TextChanged="TextBox_TextChanged" Text="0"/>
-        <TextBox x:Name="tbPatientCode" HorizontalAlignment="Left" Height="20" Margin="91,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" TextChanged="TextBox_TextChanged_1" Text="X"/>
-        <TextBox x:Name="tbPatientSex" HorizontalAlignment="Left" Height="20" Margin="91,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Text="X"/>
-        <TextBox x:Name="tbPatientName" HorizontalAlignment="Left" Height="20" Margin="91,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Text="X"/>
+        <TextBox x:Name="tbPatientCode" HorizontalAlignment="Left" Height="20" Margin="91,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" TextChanged="TextBox_TextChanged_1" Text="MCH-0234567"/>
+        <TextBox x:Name="tbPatientSex" HorizontalAlignment="Left" Height="20" Margin="91,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Text="F"/>
+        <TextBox x:Name="tbPatientName" HorizontalAlignment="Left" Height="20" Margin="91,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Text="Haagse Harry"/>
         <Label Content="Version" HorizontalAlignment="Left" Margin="0,17,0,0" VerticalAlignment="Top"/>
         <Label Content="Patient Info (X if unknown)" HorizontalAlignment="Left" Margin="43,50,0,0" VerticalAlignment="Top" Width="167"/>
         <Label Content="Code" HorizontalAlignment="Left" Margin="0,72,0,0" VerticalAlignment="Top"/>
@@ -19,17 +19,17 @@
         <Label Content="Recording Info (X if unknown)" HorizontalAlignment="Left" Margin="42,164,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.506,3.258"/>
         <Label Content="Start Date" HorizontalAlignment="Left" Margin="0,187,0,0" VerticalAlignment="Top"/>
         <DatePicker x:Name="tbStartDate" HorizontalAlignment="Left" Margin="91,189,0,0" VerticalAlignment="Top" Width="179"/>
-        <DatePicker x:Name="tbPatientBirthday" HorizontalAlignment="Left" Margin="91,118,0,0" VerticalAlignment="Top" Width="179"/>
+        <DatePicker x:Name="tbPatientBirthday" HorizontalAlignment="Left" Margin="91,118,0,0" VerticalAlignment="Top" Width="179" FirstDayOfWeek="Monday"/>
         <Label Content="PSG Number" HorizontalAlignment="Left" Margin="0,248,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbPSGNumber" HorizontalAlignment="Left" Height="20" Margin="91,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Text="X"/>
-        <TextBox x:Name="tbTechnicianCode" HorizontalAlignment="Left" Height="20" Margin="91,278,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Text="X"/>
+        <TextBox x:Name="tbPSGNumber" HorizontalAlignment="Left" Height="20" Margin="91,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Text="PSG-1234/1987"/>
+        <TextBox x:Name="tbTechnicianCode" HorizontalAlignment="Left" Height="20" Margin="91,278,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Text="NN"/>
         <Label Content="Technician &#xD;&#xA;Code" HorizontalAlignment="Left" Margin="0,272,0,0" VerticalAlignment="Top"/>
         <Label Content="Equipment&#xD;&#xA;Code" HorizontalAlignment="Left" Margin="0,304,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbEquipCode" HorizontalAlignment="Left" Height="20" Margin="91,308,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Text="X"/>
+        <TextBox x:Name="tbEquipCode" HorizontalAlignment="Left" Height="20" Margin="91,308,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Text="Telemetry03"/>
         <Label Content="Start Time&#xD;&#xA;hh mm ss" HorizontalAlignment="Left" Margin="0,213,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbStartHour" HorizontalAlignment="Left" Height="20" Margin="91,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="34" Text="X"/>
-        <TextBox x:Name="tbStartMinute" HorizontalAlignment="Left" Height="20" Margin="164,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="34" Text="X"/>
-        <TextBox x:Name="tbStartSecond" HorizontalAlignment="Left" Height="20" Margin="236,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="34" Text="X"/>
+        <TextBox x:Name="tbStartHour" HorizontalAlignment="Left" Height="20" Margin="91,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="34" Text="20"/>
+        <TextBox x:Name="tbStartMinute" HorizontalAlignment="Left" Height="20" Margin="164,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="34" Text="35"/>
+        <TextBox x:Name="tbStartSecond" HorizontalAlignment="Left" Height="20" Margin="236,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="34" Text="00"/>
         <TextBox x:Name="tbNumBytes" HorizontalAlignment="Left" Height="20" Margin="157,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="21" TextChanged="TextBox_TextChanged" Text="0" IsEnabled="False"/>
         <Label Content="Header Bytes" HorizontalAlignment="Left" Margin="72,15,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cbReserved" SelectedIndex="0" HorizontalAlignment="Left" Height="22" Margin="205,19,0,0" VerticalAlignment="Top" Width="65" SelectionChanged="ComboBox_SelectionChanged">
@@ -37,12 +37,12 @@
             <ComboBoxItem Name="edfd">EDF+D</ComboBoxItem>
         </ComboBox>
         <Label Content="Data Info" HorizontalAlignment="Left" Margin="326,47,0,0" VerticalAlignment="Top" Width="65"/>
-        <TextBox x:Name="tbNumRecords" HorizontalAlignment="Left" Height="20" Margin="362,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" TextChanged="TextBox_TextChanged_1" Text="-1"/>
+        <TextBox x:Name="tbNumRecords" HorizontalAlignment="Left" Height="20" Margin="362,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" TextChanged="TextBox_TextChanged_1" Text="2880"/>
         <Label Content="Number &#xD;&#xA;of Records" HorizontalAlignment="Left" Margin="275,72,0,0" VerticalAlignment="Top"/>
         <Label Content="Duration&#xD;&#xA;of one record&#xD;&#xA;(seconds)" HorizontalAlignment="Left" Margin="275,107,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbDurationRecord" HorizontalAlignment="Left" Height="20" Margin="362,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" TextChanged="TextBox_TextChanged_1" Text="1"/>
+        <TextBox x:Name="tbDurationRecord" HorizontalAlignment="Left" Height="20" Margin="362,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" TextChanged="TextBox_TextChanged_1" Text="30"/>
         <Label Content="Signals per&#xD;&#xA;record (ns)" HorizontalAlignment="Left" Margin="275,160,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbNs" HorizontalAlignment="Left" Height="20" Margin="362,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" TextChanged="TextBox_TextChanged_1" Text="1"/>
+        <TextBox x:Name="tbNs" HorizontalAlignment="Left" Height="20" Margin="362,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" TextChanged="TextBox_TextChanged_1" Text="2"/>
         <Button Content="Proceed" HorizontalAlignment="Left" Height="32" Margin="326,257,0,0" VerticalAlignment="Top" Width="116" Click="Button_Click"/>
 
     </Grid>

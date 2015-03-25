@@ -63,15 +63,7 @@ namespace EDFLibrary
             setDurationRecord(iDurationRecord);
             setNs(iNs);
                                         
-           labels                        = new List<string>();
-           transducerTypes               = new List<string>();
-           physicalDimensions            = new List<string>();
-           physicalMinimums              = new List<string>();
-           physicalMaximums              = new List<string>();
-           digitalMinimums               = new List<string>();
-           digitalMaximums               = new List<string>();
-           prefilterings                  = new List<string>();
-           numSamplesPerRecords           = new List<string>();
+           
         }
 
       /// <summary>
@@ -86,11 +78,22 @@ namespace EDFLibrary
       /// <param name="iDigitalMaximums"></param>
       /// <param name="iPrefilterings"></param>
       /// <param name="iNumSamplesPerRecords"></param>
-        private void setNSDependantData(List<string> iLabels, List<string> iTransducerTypes, List<string> iPhysicalDimensions, 
+        public void setNSDependantData(List<string> iLabels, List<string> iTransducerTypes, List<string> iPhysicalDimensions, 
                                         List<string> iPhysicalMinimums, 
                                         List<string> iPhysicalMaximums, List<string> iDigitalMinimums, List<string> iDigitalMaximums,           List<string> iPrefilterings, 
                                         List<string> iNumSamplesPerRecords)
         {
+
+            labels = new List<string>();
+            transducerTypes = new List<string>();
+            physicalDimensions = new List<string>();
+            physicalMinimums = new List<string>();
+            physicalMaximums = new List<string>();
+            digitalMinimums = new List<string>();
+            digitalMaximums = new List<string>();
+            prefilterings = new List<string>();
+            numSamplesPerRecords = new List<string>();
+
             setLabels(iLabels);
             settransducerTypes(iTransducerTypes);
             setphysicalDimensions(iPhysicalDimensions);
@@ -106,15 +109,15 @@ namespace EDFLibrary
         /// returns the final header
         /// </summary>
         /// <returns></returns>
-        private string generateEDFHeader()
+        public string generateEDFHeader()
         {
             string header = "";
             //initialise the numbytes block - just for the start
-            numbytes = Convert.ToString(256 + Convert.ToInt32(ns) * 256);
+            numbytes = BuildHeader.buildHeader((Convert.ToString(256 + Convert.ToInt32(ns) * 256)),8);
             
 
             //build the end reserved block
-            reserved2 = BuildHeader.buildHeader("", 32);
+            reserved2 = BuildHeader.buildHeader("", Convert.ToInt32(ns)*32);
 
             //add basics
             header += edfVersion + localPatientIdent + localRecordingIdent + startDate + startTime + numbytes + reserved + numRecords +
@@ -194,10 +197,15 @@ namespace EDFLibrary
         }
         private void setReserved(string iReserved)
         {
+            
+            
             if (iReserved == EDFReserved.EDF_CONTINUOUS || iReserved == EDFReserved.EDF_DISCONTINUOUS)
                 reserved = BuildHeader.buildHeader(iReserved, 44);
             else
-                throw new ApplicationException("Reserved block only accepted EDF+C or EDF+D, please try again");
+                throw new ApplicationException("Reserved block only accepts EDF+C or EDF+D, please try again");
+
+            //Reserved field -> uncomment below to override, just plain 44 bytes, this file will not be EDF+ compatible anymore
+           // reserved = BuildHeader.buildHeader("", 44);
         }
         private void setNumRecords(string iNumRecords = "-1") //-1 signifies unknwon
         {
@@ -209,13 +217,13 @@ namespace EDFLibrary
         }
         private void setNs(string iNs)
         {
-            ns = BuildHeader.buildHeader(iNs, 4);
+            ns = BuildHeader.buildHeader(Convert.ToString(Convert.ToInt32(iNs) + 1), 4); //add 1 so that annotations are enforced under EDF+
         }
 
 
     //advanced setters
 
-        public void setLabels(List<string> iLabels)
+        private void setLabels(List<string> iLabels)
         {
             if (iLabels.Count == Convert.ToInt32(ns))
             {
@@ -226,7 +234,7 @@ namespace EDFLibrary
             }
                 
         }
-        public void settransducerTypes(List<string> itransducerTypes)
+        private void settransducerTypes(List<string> itransducerTypes)
         {
             if (itransducerTypes.Count == Convert.ToInt32(ns))
             {
@@ -237,7 +245,7 @@ namespace EDFLibrary
             }
 
         }
-        public void setphysicalDimensions(List<string> iphysicalDimensions)
+        private void setphysicalDimensions(List<string> iphysicalDimensions)
         {
             if (iphysicalDimensions.Count == Convert.ToInt32(ns))
             {
@@ -248,7 +256,7 @@ namespace EDFLibrary
             }
 
         }
-        public void setphysicalMinimums(List<string> iphysicalMinimums)
+        private void setphysicalMinimums(List<string> iphysicalMinimums)
         {
             if (iphysicalMinimums.Count == Convert.ToInt32(ns))
             {
@@ -259,7 +267,7 @@ namespace EDFLibrary
             }
 
         }
-        public void setphysicalMaximums(List<string> iphysicalmaximums)
+        private void setphysicalMaximums(List<string> iphysicalmaximums)
         {
             if (iphysicalmaximums.Count == Convert.ToInt32(ns))
             {
@@ -270,7 +278,7 @@ namespace EDFLibrary
             }
 
         }
-        public void setdigitalMinimums(List<string> idigitalMinimums)
+        private void setdigitalMinimums(List<string> idigitalMinimums)
         {
             if (idigitalMinimums.Count == Convert.ToInt32(ns))
             {
@@ -281,7 +289,7 @@ namespace EDFLibrary
             }
 
         }
-        public void setdigitalmaximums(List<string> idigitalmaximums)
+        private void setdigitalmaximums(List<string> idigitalmaximums)
         {
             if (idigitalmaximums.Count == Convert.ToInt32(ns))
             {
@@ -292,7 +300,7 @@ namespace EDFLibrary
             }
 
         }
-        public void setprefilterings(List<string> iprefilterings)
+        private void setprefilterings(List<string> iprefilterings)
         {
             if (iprefilterings.Count == Convert.ToInt32(ns))
             {
@@ -303,7 +311,7 @@ namespace EDFLibrary
             }
 
         }
-        public void setnumSamplesPerRecords(List<string> inumSamplesPerRecords)
+        private void setnumSamplesPerRecords(List<string> inumSamplesPerRecords)
         {
             if (inumSamplesPerRecords.Count == Convert.ToInt32(ns))
             {
@@ -314,6 +322,8 @@ namespace EDFLibrary
             }
 
         }
+
+        //public getters
 
         public string getNs()
         {
