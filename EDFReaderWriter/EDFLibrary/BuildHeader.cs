@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace EDFLibrary
 {
+       
     public static class BuildHeader
     {
+
         private static string generateSpaces(int length)
         {
             string outSpaces = "";

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EDFLibrary
 {
-    class EDFHeader
+    public class EDFHeader
     {
 
         //basic info
@@ -315,6 +315,10 @@ namespace EDFLibrary
 
         }
 
+        public string getNs()
+        {
+            return ns;
+        }
 
          
 

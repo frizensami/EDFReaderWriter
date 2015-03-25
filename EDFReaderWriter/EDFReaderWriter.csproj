@@ -53,6 +53,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdvancedDetailsWindow.xaml.cs">
+      <DependentUpon>AdvancedDetailsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utility Classes\ObjectHolder.cs" />
+    <Page Include="AdvancedDetailsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

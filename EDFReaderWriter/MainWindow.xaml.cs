@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using EDFLibrary;
+using EDFReaderWriter.Utility_Classes;
 namespace EDFReaderWriter
 {
     /// <summary>
@@ -69,6 +70,12 @@ namespace EDFReaderWriter
             
 
             EDFHeader newHeader = new EDFHeader(version, patient,recording,startDate,startTime,reserved,numRecords,durationRecord,ns);
+            ObjectHolder.EDFHeaderHolder = newHeader; //store it here for access from other windows
+
+            AdvancedDetailsWindow window = new AdvancedDetailsWindow();
+            App.Current.MainWindow = window;
+            this.Close();
+            window.Show();
         }
     }
 }
