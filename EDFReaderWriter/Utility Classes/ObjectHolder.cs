@@ -8,6 +8,6 @@ namespace EDFReaderWriter.Utility_Classes
 {
     public static class ObjectHolder
     {
-        public static EDFLibrary.EDFHeader EDFHeaderHolder;
+        public static EDFHeader EDFHeaderHolder;
     }
 }

@@ -145,6 +145,13 @@ namespace EDFReaderWriter
                 StreamWriter writer = new StreamWriter(@"D:\out.edf");
                 writer.Write(header.generateEDFHeader());
                 writer.Close();
+
+                //open next window
+                
+                DataSources window = new DataSources();
+                App.Current.MainWindow = window;
+                this.Close();
+                window.Show();
                 
             }
             else
@@ -175,6 +182,11 @@ namespace EDFReaderWriter
         }
 
         private void tbNumSamples_Copy_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void tbLabel_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
