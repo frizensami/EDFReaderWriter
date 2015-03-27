@@ -56,9 +56,17 @@
     <Compile Include="AdvancedDetailsWindow.xaml.cs">
       <DependentUpon>AdvancedDetailsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CNTToEDF\EEGCntFile.cs" />
+    <Compile Include="DataSourcesWindow.xaml.cs">
+      <DependentUpon>DataSourcesWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EDFLibrary\EDFTALAnnotation.cs" />
     <Compile Include="Utility Classes\ObjectHolder.cs" />
     <Page Include="AdvancedDetailsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataSourcesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

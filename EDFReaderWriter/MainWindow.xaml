@@ -9,7 +9,7 @@
         <TextBox x:Name="tbVersion" HorizontalAlignment="Left" Height="20" Margin="46,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="21" TextChanged="TextBox_TextChanged" Text="0"/>
         <TextBox x:Name="tbPatientCode" HorizontalAlignment="Left" Height="20" Margin="91,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" TextChanged="TextBox_TextChanged_1" Text="MCH-0234567"/>
         <TextBox x:Name="tbPatientSex" HorizontalAlignment="Left" Height="20" Margin="91,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Text="F"/>
-        <TextBox x:Name="tbPatientName" HorizontalAlignment="Left" Height="20" Margin="91,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Text="Haagse Harry"/>
+        <TextBox x:Name="tbPatientName" HorizontalAlignment="Left" Height="20" Margin="91,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Text="Sriram Sami"/>
         <Label Content="Version" HorizontalAlignment="Left" Margin="0,17,0,0" VerticalAlignment="Top"/>
         <Label Content="Patient Info (X if unknown)" HorizontalAlignment="Left" Margin="43,50,0,0" VerticalAlignment="Top" Width="167"/>
         <Label Content="Code" HorizontalAlignment="Left" Margin="0,72,0,0" VerticalAlignment="Top"/>
@@ -25,7 +25,7 @@
         <TextBox x:Name="tbTechnicianCode" HorizontalAlignment="Left" Height="20" Margin="91,278,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Text="NN"/>
         <Label Content="Technician &#xD;&#xA;Code" HorizontalAlignment="Left" Margin="0,272,0,0" VerticalAlignment="Top"/>
         <Label Content="Equipment&#xD;&#xA;Code" HorizontalAlignment="Left" Margin="0,304,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbEquipCode" HorizontalAlignment="Left" Height="20" Margin="91,308,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Text="Telemetry03"/>
+        <TextBox x:Name="tbEquipCode" HorizontalAlignment="Left" Height="20" Margin="91,308,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Text="ASUS-1"/>
         <Label Content="Start Time&#xD;&#xA;hh mm ss" HorizontalAlignment="Left" Margin="0,213,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbStartHour" HorizontalAlignment="Left" Height="20" Margin="91,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="34" Text="20"/>
         <TextBox x:Name="tbStartMinute" HorizontalAlignment="Left" Height="20" Margin="164,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="34" Text="35"/>
@@ -37,10 +37,10 @@
             <ComboBoxItem Name="edfd">EDF+D</ComboBoxItem>
         </ComboBox>
         <Label Content="Data Info" HorizontalAlignment="Left" Margin="326,47,0,0" VerticalAlignment="Top" Width="65"/>
-        <TextBox x:Name="tbNumRecords" HorizontalAlignment="Left" Height="20" Margin="362,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" TextChanged="TextBox_TextChanged_1" Text="2880"/>
+        <TextBox x:Name="tbNumRecords" HorizontalAlignment="Left" Height="20" Margin="362,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" TextChanged="TextBox_TextChanged_1" Text="14592"/>
         <Label Content="Number &#xD;&#xA;of Records" HorizontalAlignment="Left" Margin="275,72,0,0" VerticalAlignment="Top"/>
         <Label Content="Duration&#xD;&#xA;of one record&#xD;&#xA;(seconds)" HorizontalAlignment="Left" Margin="275,107,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbDurationRecord" HorizontalAlignment="Left" Height="20" Margin="362,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" TextChanged="TextBox_TextChanged_1" Text="30"/>
+        <TextBox x:Name="tbDurationRecord" HorizontalAlignment="Left" Height="20" Margin="362,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" TextChanged="TextBox_TextChanged_1" Text="0.00390625"/>
         <Label Content="Signals per&#xD;&#xA;record (ns)" HorizontalAlignment="Left" Margin="275,160,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbNs" HorizontalAlignment="Left" Height="20" Margin="362,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" TextChanged="TextBox_TextChanged_1" Text="2"/>
         <Button Content="Proceed" HorizontalAlignment="Left" Height="32" Margin="326,257,0,0" VerticalAlignment="Top" Width="116" Click="Button_Click"/>
