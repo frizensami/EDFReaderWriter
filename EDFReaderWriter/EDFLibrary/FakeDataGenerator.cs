@@ -8,7 +8,7 @@ namespace EDFReaderWriter.EDFLibrary
 {
     public static class FakeDataGenerator
     {
-        public Int16[] generateData(int numSamples)
+        public static Int16[] generateData(int numSamples)
         {
             Int16[] data = new Int16[numSamples];
             Int16 x = Int16.MinValue;

@@ -148,7 +148,7 @@ namespace EDFReaderWriter
 
                 //open next window
                 
-                DataSources window = new DataSources();
+                DataSourcesWindow window = new DataSourcesWindow();
                 App.Current.MainWindow = window;
                 this.Close();
                 window.Show();
@@ -187,6 +187,12 @@ namespace EDFReaderWriter
         }
 
         private void tbLabel_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+      
+        private void cbSaveProgram_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

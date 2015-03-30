@@ -60,6 +60,12 @@
     <Compile Include="DataSourcesWindow.xaml.cs">
       <DependentUpon>DataSourcesWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EDFLibrary\EDFData\Manager\EDFDataRecordManager.cs" />
+    <Compile Include="EDFLibrary\EDFData\Types\EDFDataRecord.cs" />
+    <Compile Include="EDFLibrary\EDFData\Types\EDFDataRecordSignal.cs" />
+    <Compile Include="EDFLibrary\EDFData\Types\EDFDataRecordSignalSample.cs" />
+    <Compile Include="EDFLibrary\EDFData\EDFSignal.cs" />
+    <Compile Include="EDFLibrary\EDFSignalOther.cs" />
     <Compile Include="EDFLibrary\EDFTALAnnotation.cs" />
     <Compile Include="EDFLibrary\FakeDataGenerator.cs" />
     <Compile Include="Utility Classes\ObjectHolder.cs" />
