@@ -4,13 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EDFReaderWriter.EDFLibrary
+namespace EDFLibrary.EDFData.Types
 {
     class EDFDataRecordSignal
     {
-        public int numSamples { get; private set; }
-        public EDFDataRecordSignalSample[] samples { get; private set; }
-        
+        public int numSamples { get; set; }
+        public EDFDataRecordSignalSample[] samples { get; set; }
+
+        public EDFDataRecordSignal()
+        {
+
+        }
+
         public EDFDataRecordSignal(int numSamples, EDFDataRecordSignalSample[] samples)
         {
             if (numSamples == samples.Length)
@@ -20,11 +25,11 @@ namespace EDFReaderWriter.EDFLibrary
             }
             else
             {
-                throw new ArgumentException("Provided samples do not have the number of samples expected! Expected " + numSamples + " got " + samples.Length);
+                throw new ArgumentException("Provided sample array does not have the number of samples expected! Expected " + numSamples + " got " + samples.Length);
             }
-               
-            
-            
+
+
+
         }
     }
 }

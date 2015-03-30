@@ -1,7 +1,9 @@
 ﻿<Application x:Class="EDFReaderWriter.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="DataSourcesWindow.xaml">
+             StartupUri="MainWindow.xaml">
+            <!-- StartupUri="DataSourcesWindow.xaml"> -->
+             
     <Application.Resources>
          
     </Application.Resources>

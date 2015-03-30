@@ -3,7 +3,7 @@ using System;
 using System.Threading;
 using System.IO;
 
-namespace BCILib.Amp
+namespace CNTFile
 {
     /// <summary>
     /// Summary description for EEGCntFile.

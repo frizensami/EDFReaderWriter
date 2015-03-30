@@ -37,12 +37,12 @@
             <ComboBoxItem Name="edfd">EDF+D</ComboBoxItem>
         </ComboBox>
         <Label Content="Data Info" HorizontalAlignment="Left" Margin="326,47,0,0" VerticalAlignment="Top" Width="65"/>
-        <TextBox x:Name="tbNumRecords" HorizontalAlignment="Left" Height="20" Margin="362,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" TextChanged="TextBox_TextChanged_1" Text="14592"/>
+        <TextBox x:Name="tbNumRecords" HorizontalAlignment="Left" Height="20" Margin="362,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" TextChanged="TextBox_TextChanged_1" Text="11"/>
         <Label Content="Number &#xD;&#xA;of Records" HorizontalAlignment="Left" Margin="275,72,0,0" VerticalAlignment="Top"/>
         <Label Content="Duration&#xD;&#xA;of one record&#xD;&#xA;(seconds)" HorizontalAlignment="Left" Margin="275,107,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbDurationRecord" HorizontalAlignment="Left" Height="20" Margin="362,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" TextChanged="TextBox_TextChanged_1" Text="1"/>
         <Label Content="Signals per&#xD;&#xA;record (ns)" HorizontalAlignment="Left" Margin="275,160,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbNs" HorizontalAlignment="Left" Height="20" Margin="362,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" TextChanged="TextBox_TextChanged_1" Text="2"/>
+        <TextBox x:Name="tbNs" HorizontalAlignment="Left" Height="20" Margin="362,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" TextChanged="TextBox_TextChanged_1" Text="1"/>
         <Button Content="Proceed" HorizontalAlignment="Left" Margin="326,257,0,81" Width="116" Click="Button_Click"/>
 
     </Grid>

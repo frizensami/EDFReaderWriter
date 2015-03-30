@@ -1,36 +1,37 @@
-﻿using System;
+﻿using EDFReaderWriter.Utility_Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EDFLibrary
+namespace EDFLibrary.EDFHeader
 {
     public class EDFHeader
     {
 
         //basic info
-        string edfVersion; //0 by default
-        string localPatientIdent; //patient identification
-        string localRecordingIdent; //equipment used, technician name, etc, check spec
-        string startDate; //start date of record
-        string startTime; //start time of record
-        string reserved; //reserved block, only accept EDF+C or EDF+D
-        string numRecords; //-1 if unknown
-        string durationRecord; //duration of one record in seconds
-        string ns; //number of signals in one data record
+        public string edfVersion { get; private set; } //0 by default
+        public string localPatientIdent { get; private set; } //patient identification
+        public string localRecordingIdent { get; private set; } //equipment used, technician name, etc, check spec
+        public string startDate { get; private set; } //start date of record
+        public string startTime { get; private set; } //start time of record
+        public string reserved { get; private set; } //reserved block, only accept EDF+C or EDF+D
+        public string numRecords { get; private set; } //-1 if unknown
+        public string durationRecord { get; private set; } //duration of one record in seconds
+        public string ns { get; private set; } //number of signals in one data record
 
 
         //info with size dependant on ns
-        List<string> labels;
-        List<string> transducerTypes;
-        List<string> physicalDimensions;
-        List<string> physicalMinimums;
-        List<string> physicalMaximums;
-        List<string> digitalMinimums;
-        List<string> digitalMaximums;
-        List<string> prefilterings;
-        List<string> numSamplesPerRecords;
+        public List<string> labels { get; private set; }
+        public List<string> transducerTypes { get; private set; }
+        public List<string> physicalDimensions { get; private set; }
+        public List<string> physicalMinimums { get; private set; }
+        public List<string> physicalMaximums { get; private set; }
+        public List<string> digitalMinimums { get; private set; }
+        public List<string> digitalMaximums { get; private set; }
+        public List<string> prefilterings { get; private set; }
+        public List<string> numSamplesPerRecords { get; private set; }
 
         string reserved2;
 
@@ -62,25 +63,25 @@ namespace EDFLibrary
             setNumRecords(iNumRecords);
             setDurationRecord(iDurationRecord);
             setNs(iNs);
-                                        
-           
+
+
         }
 
-      /// <summary>
-      /// This function completes all the data required for the header. Call generateEDFHeader to get the completed header
-      /// </summary>
-      /// <param name="iLabels"></param>
-      /// <param name="iTransducerTypes"></param>
-      /// <param name="iPhysicalDimensions"></param>
-      /// <param name="iPhysicalMinimums"></param>
-      /// <param name="iPhysicalMaximums"></param>
-      /// <param name="iDigitalMinimums"></param>
-      /// <param name="iDigitalMaximums"></param>
-      /// <param name="iPrefilterings"></param>
-      /// <param name="iNumSamplesPerRecords"></param>
-        public void setNSDependantData(List<string> iLabels, List<string> iTransducerTypes, List<string> iPhysicalDimensions, 
-                                        List<string> iPhysicalMinimums, 
-                                        List<string> iPhysicalMaximums, List<string> iDigitalMinimums, List<string> iDigitalMaximums,           List<string> iPrefilterings, 
+        /// <summary>
+        /// This function completes all the data required for the header. Call generateEDFHeader to get the completed header
+        /// </summary>
+        /// <param name="iLabels"></param>
+        /// <param name="iTransducerTypes"></param>
+        /// <param name="iPhysicalDimensions"></param>
+        /// <param name="iPhysicalMinimums"></param>
+        /// <param name="iPhysicalMaximums"></param>
+        /// <param name="iDigitalMinimums"></param>
+        /// <param name="iDigitalMaximums"></param>
+        /// <param name="iPrefilterings"></param>
+        /// <param name="iNumSamplesPerRecords"></param>
+        public void setNSDependantData(List<string> iLabels, List<string> iTransducerTypes, List<string> iPhysicalDimensions,
+                                        List<string> iPhysicalMinimums,
+                                        List<string> iPhysicalMaximums, List<string> iDigitalMinimums, List<string> iDigitalMaximums, List<string> iPrefilterings,
                                         List<string> iNumSamplesPerRecords)
         {
 
@@ -103,6 +104,23 @@ namespace EDFLibrary
             setdigitalmaximums(iPhysicalMaximums);
             setprefilterings(iPrefilterings);
             setnumSamplesPerRecords(iNumSamplesPerRecords);
+
+            for (int i = 0; i < iLabels.Count; i++)
+            {
+                //add every signal to the application global list of signals
+                EDFSignal signal = new EDFSignal();
+                signal.label = iLabels[i];
+                signal.transducerType = iTransducerTypes[i];
+                signal.physicalDimension = iPhysicalDimensions[i];
+                signal.physicalMinimum = iPhysicalMinimums[i];
+                signal.physicalMaximum = iPhysicalMaximums[i];
+                signal.digitalMinimum = iDigitalMinimums[i];
+                signal.digitalMaximum = iDigitalMaximums[i];
+                signal.preFiltering = iPrefilterings[i];
+                signal.numSamples = iNumSamplesPerRecords[i];
+                ObjectHolder.signals.Add(signal);
+
+            }
         }
 
         /// <summary>
@@ -113,11 +131,11 @@ namespace EDFLibrary
         {
             string header = "";
             //initialise the numbytes block - just for the start
-            numbytes = BuildHeader.buildHeader((Convert.ToString(256 + Convert.ToInt32(ns) * 256)),8);
-            
+            numbytes = BuildHeader.buildHeader((Convert.ToString(256 + Convert.ToInt32(ns) * 256)), 8);
+
 
             //build the end reserved block
-            reserved2 = BuildHeader.buildHeader("", Convert.ToInt32(ns)*32);
+            reserved2 = BuildHeader.buildHeader("", Convert.ToInt32(ns) * 32);
 
             //add basics
             header += edfVersion + localPatientIdent + localRecordingIdent + startDate + startTime + numbytes + reserved + numRecords +
@@ -161,12 +179,12 @@ namespace EDFLibrary
                 header += x;
             }
 
-            
+
             header += reserved2;
 
             return header;
         }
-       
+
         //physicalMinimums     
         //physicalMaximums     
         //digitalMinimums      
@@ -197,15 +215,15 @@ namespace EDFLibrary
         }
         private void setReserved(string iReserved)
         {
-            
-            
+
+
             if (iReserved == EDFReserved.EDF_CONTINUOUS || iReserved == EDFReserved.EDF_DISCONTINUOUS)
                 reserved = BuildHeader.buildHeader(iReserved, 44);
             else
                 throw new ApplicationException("Reserved block only accepts EDF+C or EDF+D, please try again");
 
             //Reserved field -> uncomment below to override, just plain 44 bytes, this file will not be EDF+ compatible anymore
-           // reserved = BuildHeader.buildHeader("", 44);
+            // reserved = BuildHeader.buildHeader("", 44);
         }
         private void setNumRecords(string iNumRecords = "-1") //-1 signifies unknwon
         {
@@ -221,7 +239,7 @@ namespace EDFLibrary
         }
 
 
-    //advanced setters
+        //advanced setters
 
         private void setLabels(List<string> iLabels)
         {
@@ -232,7 +250,7 @@ namespace EDFLibrary
                     labels.Add(BuildHeader.buildHeader(label, 16));
                 }
             }
-                
+
         }
         private void settransducerTypes(List<string> itransducerTypes)
         {
@@ -323,14 +341,11 @@ namespace EDFLibrary
 
         }
 
-        //public getters
+      
 
-        public string getNs()
-        {
-            return ns;
-        }
 
-         
+
+
 
 
     }

@@ -10,6 +10,7 @@
         </ComboBox>
         <Label Content="Signal" HorizontalAlignment="Left" Height="30" Margin="122,7,0,0" VerticalAlignment="Top" Width="48"/>
         <Label Content="Data Source Program" HorizontalAlignment="Left" Height="30" Margin="86,76,0,0" VerticalAlignment="Top" Width="126" RenderTransformOrigin="0.625,2.647"/>
+        <Button x:Name="btnGenerate" Content="Generate File" HorizontalAlignment="Left" Height="34" Margin="63,215,0,0" VerticalAlignment="Top" Width="195" Click="btnGenerate_Click"/>
 
     </Grid>
 </Window>

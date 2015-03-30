@@ -1,12 +1,13 @@
-﻿using System;
+﻿using EDFLibrary.EDFData.Types;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EDFReaderWriter.EDFLibrary
+namespace EDFLibrary
 {
-    class EDFSignal
+    public class EDFSignal
     {
         public string label { get; set; }
         public string transducerType { get; set; }
@@ -17,5 +18,6 @@ namespace EDFReaderWriter.EDFLibrary
         public string digitalMaximum { get; set; }
         public string preFiltering { get; set; }
         public string numSamples { get; set; }
+        public EDFDataRecordSignalSample[] samples;
     }
 }

@@ -4,11 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EDFReaderWriter.EDFLibrary
+namespace EDFLibrary.EDFData.Types
 {
-    class EDFDataRecordSignalSample
+    public class EDFDataRecordSignalSample
     {
-        public Int16 sample { get; private set; }
+        public Int16 sample { get; set; }
+        public EDFDataRecordSignalSample()
+        {
+
+        }
         public EDFDataRecordSignalSample(Int16 sample)
         {
             this.sample = sample;

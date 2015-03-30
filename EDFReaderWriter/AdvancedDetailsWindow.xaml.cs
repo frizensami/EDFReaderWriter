@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using EDFLibrary;
 using EDFReaderWriter.Utility_Classes;
 using System.IO;
+using EDFLibrary.EDFHeader;
 
 namespace EDFReaderWriter
 {
@@ -45,7 +46,7 @@ namespace EDFReaderWriter
            
 
             header = ObjectHolder.EDFHeaderHolder;
-            numSignals = Convert.ToInt32(header.getNs()) - 1; //-1 to keep annotations separate from real signals
+            numSignals = Convert.ToInt32(header.ns) - 1; //-1 to keep annotations separate from real signals
 
             saved = new bool[numSignals];
 
@@ -125,7 +126,7 @@ namespace EDFReaderWriter
             if (allSaved)
             {
                 //add annotations
-                int ns = Convert.ToInt32(header.getNs());
+                int ns = Convert.ToInt32(header.ns);
                 labels[ns-1] = tbLabel_Copy.Text;
                 transducerTypes[ns-1] = tbTransducerType_Copy.Text;
                 physicalDimensions[ns-1] = tbPhysicalDimension_Copy.Text;

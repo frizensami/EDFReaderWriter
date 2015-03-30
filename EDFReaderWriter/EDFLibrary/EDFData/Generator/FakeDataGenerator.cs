@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EDFReaderWriter.EDFLibrary
+namespace EDFLibrary.EDFData.Generator
 {
     public static class FakeDataGenerator
     {

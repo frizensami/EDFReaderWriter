@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using EDFLibrary;
 using EDFReaderWriter.Utility_Classes;
+using EDFLibrary.EDFHeader;
 namespace EDFReaderWriter
 {
     /// <summary>
@@ -27,6 +28,8 @@ namespace EDFReaderWriter
             //EDFLibrary.EDFHeader newHeader = new EDFLibrary.EDFHeader();
             //newHeader.setReserved(EDFLibrary.EDFReserved.EDF_CONTINUOUS);
 
+            tbPatientBirthday.SelectedDate = DateTime.Today;
+            tbStartDate.SelectedDate = DateTime.Today;
 
 
         }
