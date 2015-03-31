@@ -8,7 +8,7 @@
         </Grid.ColumnDefinitions>
         <TextBox x:Name="tbVersion" HorizontalAlignment="Left" Height="20" Margin="46,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="21" TextChanged="TextBox_TextChanged" Text="0"/>
         <TextBox x:Name="tbPatientCode" HorizontalAlignment="Left" Height="20" Margin="91,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" TextChanged="TextBox_TextChanged_1" Text="MCH-0234567"/>
-        <TextBox x:Name="tbPatientSex" HorizontalAlignment="Left" Height="20" Margin="91,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Text="F"/>
+        <TextBox x:Name="tbPatientSex" HorizontalAlignment="Left" Height="20" Margin="91,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Text="M"/>
         <TextBox x:Name="tbPatientName" HorizontalAlignment="Left" Height="20" Margin="91,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Text="Sriram Sami"/>
         <Label Content="Version" HorizontalAlignment="Left" Margin="0,17,0,0" VerticalAlignment="Top"/>
         <Label Content="Patient Info (X if unknown)" HorizontalAlignment="Left" Margin="43,50,0,0" VerticalAlignment="Top" Width="167"/>

@@ -80,15 +80,15 @@
     <Compile Include="EDFLibrary\EDFData\Converter\EDFSampleToSignalArray.cs" />
     <Compile Include="EDFLibrary\EDFData\Generator\DefaultAnnotationGenerator.cs" />
     <Compile Include="EDFLibrary\EDFData\Manager\EDFDataManager.cs" />
-    <Compile Include="EDFLibrary\EDFData\Types\EDFDataRecords.cs" />
+    <Compile Include="EDFLibrary\EDFData\Types\EDFDataBlock.cs" />
     <Compile Include="EDFLibrary\EDFData\Types\EDFDataRecord.cs" />
     <Compile Include="EDFLibrary\EDFData\Types\EDFDataRecordSignal.cs" />
     <Compile Include="EDFLibrary\EDFData\Types\EDFDataRecordSignalSample.cs" />
+    <Compile Include="EDFLibrary\EDFData\Types\TAL\EDFTALAnnotationRecord.cs" />
     <Compile Include="EDFLibrary\EDFHeader\StripHeaderField.cs" />
     <Compile Include="EDFLibrary\EDFSignal.cs" />
-    <Compile Include="EDFLibrary\EDFData\Types\EDFTALAnnotation.cs" />
+    <Compile Include="EDFLibrary\EDFData\Types\TAL\EDFTALAnnotation.cs" />
     <Compile Include="EDFLibrary\EDFData\Generator\FakeDataGenerator.cs" />
-    <Compile Include="EDFLibrary\FileHandler\ZeoCNTToEDF.cs" />
     <Compile Include="Utility Classes\ObjectHolder.cs" />
     <Page Include="AdvancedDetailsWindow.xaml">
       <SubType>Designer</SubType>

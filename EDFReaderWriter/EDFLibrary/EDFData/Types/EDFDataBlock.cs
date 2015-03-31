@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace EDFLibrary.EDFData.Types
 {
-    class EDFDataRecords
+    class EDFDataBlock
     {
         public int numRecords { get; set; }
         public EDFDataRecord[] records;
 
-        public EDFDataRecords()
+        public EDFDataBlock()
         {
-
+            
         }
 
-        public EDFDataRecords(int numRecords, EDFDataRecord[] records)
+        public EDFDataBlock(int numRecords, EDFDataRecord[] records)
         {
             if (numRecords == records.Length)
             {
@@ -29,7 +29,7 @@ namespace EDFLibrary.EDFData.Types
             }
         }
 
-        public Int16[] getEDFDate()
+        public Int16[] getEDFData()
         {
             
             List<Int16> outData = new List<Int16>();

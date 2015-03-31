@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace EDFLibrary.EDFHeader
 {
+    //TODO change this to a toInt overriden method!
     /// <summary>
     /// Gets the pure integer out from the specified header field
     /// </summary>

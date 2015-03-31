@@ -100,8 +100,8 @@ namespace EDFLibrary.EDFHeader
             setphysicalDimensions(iPhysicalDimensions);
             setphysicalMinimums(iPhysicalMinimums);
             setphysicalMaximums(iPhysicalMaximums);
-            setdigitalMinimums(iPhysicalMinimums);
-            setdigitalmaximums(iPhysicalMaximums);
+            setdigitalMinimums(iDigitalMinimums);
+            setdigitalmaximums(iDigitalMaximums);
             setprefilterings(iPrefilterings);
             setnumSamplesPerRecords(iNumSamplesPerRecords);
 

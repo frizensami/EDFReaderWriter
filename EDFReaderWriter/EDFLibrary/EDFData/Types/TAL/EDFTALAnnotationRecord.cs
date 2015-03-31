@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EDFReaderWriter.EDFLibrary.FileHandler
+namespace EDFReaderWriter.EDFLibrary.EDFData.Types.TAL
 {
-    class ZeoCNTToEDF
+    class EDFTALAnnotationRecord
     {
+        public static int numAnnotationBytes;
     }
 }

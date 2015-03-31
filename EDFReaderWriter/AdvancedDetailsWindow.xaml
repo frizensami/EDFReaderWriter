@@ -40,7 +40,7 @@
         <Label Content="Digital&#xA;Maximum" HorizontalAlignment="Left" Margin="493,256,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbPrefiltering_Copy" HorizontalAlignment="Left" Height="20" Margin="582,307,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179"/>
         <Label Content="Prefiltering" HorizontalAlignment="Left" Margin="493,297,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbNumSamples_Copy" HorizontalAlignment="Left" Height="20" Margin="582,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Text="1" TextChanged="tbNumSamples_Copy_TextChanged"/>
+        <TextBox x:Name="tbNumSamples_Copy" HorizontalAlignment="Left" Height="20" Margin="582,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Text="100" TextChanged="tbNumSamples_Copy_TextChanged"/>
         <Label Content="Num annotations&#xD;&#xA;per record&#xD;&#xA;(2 byte ints)" HorizontalAlignment="Left" Margin="487,324,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbTransducerType_Copy" HorizontalAlignment="Left" Height="20" Margin="582,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179"/>
         <Label Content="Transducer&#xA;Type" HorizontalAlignment="Left" Margin="495,44,0,0" VerticalAlignment="Top"/>
