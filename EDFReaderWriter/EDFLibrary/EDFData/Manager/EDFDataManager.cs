@@ -1,16 +1,12 @@
 ﻿using CNTFile;
 using CNTFile.Zeo;
 using EDFLibrary.EDFData.Types;
-using EDFLibrary.EDFData.Types.TAL;
 using EDFLibrary.EDFHeader;
 using EDFReaderWriter.EDFLibrary.EDFData.Generator;
 using EDFReaderWriter.Utility_Classes;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EDFLibrary.EDFData.Manager
 {
