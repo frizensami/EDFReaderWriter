@@ -37,24 +37,11 @@ namespace EDFLibrary
             if (dlg.ShowDialog() == true)
             {
                 manager = new EDFDataManager();
-                manager.addFile(EDFDataManager.FileTypes.zeoEEGCNT, dlg.FileName, ObjectHolder.EDFHeaderHolder, cbSignals.SelectedIndex); //-1 for 0 based
+                ObjectHolder.EDFHeaderHolder = manager.addFile(EDFDataManager.FileTypes.zeoEEGCNT, dlg.FileName, ObjectHolder.EDFHeaderHolder, cbSignals.SelectedIndex); //-1 for 0 based
             }
         }
 
 
-        /// <summary>
-        /// saves data from zeo cnt file format into edf data objects
-        /// </summary>
-        /// <param name="filename"></param>
-        private void zeoCnt(string filename) 
-        {
-            
-
-
-
-
-
-        }
 
         private void btnGenerate_Click(object sender, RoutedEventArgs e)
         {
@@ -71,7 +58,7 @@ namespace EDFLibrary
                     
             }
             if (generate)
-                manager.generateEDFData();
+                manager.generateEDFData(ObjectHolder.EDFHeaderHolder);
         }
     }
 }

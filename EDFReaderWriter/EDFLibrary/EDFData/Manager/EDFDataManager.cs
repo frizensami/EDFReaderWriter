@@ -24,21 +24,21 @@ namespace EDFLibrary.EDFData.Manager
 
         }
         /// <summary>
-        /// This function considers the filetype required to parse, then assigns the work to another function. It passes the header object and the index of the signal to be written to.
+        /// NOTE:: RETURNS NEW MODIFIED HEADER OBJECT. This function considers the filetype required to parse, then assigns the work to another function. It requires the header object to modify and the index of the signal to be written to.
         /// </summary>
         /// <param name="fileType"></param>
         /// <param name="path"></param>
         /// <param name="signalIndex"></param>
-        public void addFile(FileTypes fileType, string path, EDFHeader.EDFHeader iHeader, int signalIndex) 
+        public EDFHeader.EDFHeader addFile(FileTypes fileType, string path, EDFHeader.EDFHeader iHeader, int signalIndex) 
         {
 
             Console.WriteLine("Adding file {0}", path);
             switch (fileType)
             {
                 case FileTypes.zeoEEGCNT:
-                    addZeoEEGCNT(path, iHeader, signalIndex);
-                    break;
+                    return addZeoEEGCNT(path, iHeader, signalIndex);
                 default:
+                    return iHeader;
                     throw new ArgumentException("Adding file failed.");
             }
 
@@ -50,7 +50,7 @@ namespace EDFLibrary.EDFData.Manager
         /// </summary>
         /// <param name="path"></param>
         /// <param name="signalIndex"></param>
-        private void addZeoEEGCNT(string path, EDFHeader.EDFHeader iHeader, int signalIndex)
+        private EDFHeader.EDFHeader addZeoEEGCNT(string path, EDFHeader.EDFHeader iHeader, int signalIndex)
         {
             EDFHeader.EDFHeader header = iHeader;
             EEGCntFile file = new EEGCntFile();
@@ -69,7 +69,7 @@ namespace EDFLibrary.EDFData.Manager
                 //Console.WriteLine("Samples[{0}] = {1}", i, samples[i].sample);
             }
             header.edfSignals[signalIndex].samples = samples;
-
+            return header;
 
         }
         /// <summary>
