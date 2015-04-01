@@ -1,11 +1,16 @@
-﻿using EDFReaderWriter.Utility_Classes;
+﻿using EDFLibrary.Utility_Classes;
 using System;
 using System.Collections.Generic;
 
 namespace EDFLibrary.EDFHeader
 {
+    /// <summary>
+    /// Header definition for the EDF File. Call the EDFHeader constructor to set the basic arguments first, then call setNSDependantData to set the rest of the data. Finally, generateHeader returns the string representation of the header
+    /// </summary>
     public class EDFHeader
     {
+        //TODO Error checking and string verification!
+        //TODO Add constants that define how many chars each field has
 
         //basic info
         public string edfVersion { get; private set; } //0 by default
@@ -30,10 +35,14 @@ namespace EDFLibrary.EDFHeader
         public List<string> prefilterings { get; private set; }
         public List<string> numSamplesPerRecords { get; private set; }
 
+        public List<EDFSignal> edfSignals;
+
         string reserved2;
 
-
         string numbytes; //calculate last -> number of bytes in header
+
+
+
 
         /// <summary>
         /// Use this construtor to initialise the base object EDFHeader. To complete it, call upon setNSDependantData
@@ -47,7 +56,6 @@ namespace EDFLibrary.EDFHeader
         /// <param name="iNumRecords"></param>
         /// <param name="iDurationRecord"></param>
         /// <param name="iNs"></param>
-
         public EDFHeader(string iEdfVersion, string iLocalPatientIdent, string iLocalRecordingIdent, string iStartDate, string iStartTime,
                          string iReserved, string iNumRecords, string iDurationRecord, string iNs)
         {
@@ -81,7 +89,15 @@ namespace EDFLibrary.EDFHeader
                                         List<string> iPhysicalMaximums, List<string> iDigitalMinimums, List<string> iDigitalMaximums, List<string> iPrefilterings,
                                         List<string> iNumSamplesPerRecords)
         {
+            //check if the data conforms to the expected number of signals
+            int intNs = ConvertEDFHeaderField.toInt32(ns);
+            if (iLabels.Count != intNs || iTransducerTypes.Count != intNs || iPhysicalDimensions.Count != intNs || iPhysicalMaximums.Count != intNs || iPhysicalMinimums.Count != intNs || iDigitalMinimums.Count != intNs || iDigitalMaximums.Count != intNs || iPrefilterings.Count != intNs || iNumSamplesPerRecords.Count != intNs)
+            {
+                throw new ArgumentException("One or more of the lists provuded in setNSDependantData do not have the expected number of elements i.e. the number of signals defined earlier");
+            }
 
+
+            //Initialise all advanced header field lists
             labels = new List<string>();
             transducerTypes = new List<string>();
             physicalDimensions = new List<string>();
@@ -92,6 +108,11 @@ namespace EDFLibrary.EDFHeader
             prefilterings = new List<string>();
             numSamplesPerRecords = new List<string>();
 
+            //initialise EDF Signal list
+            edfSignals = new List<EDFSignal>();
+
+
+            //copy from the lists to the header fields
             setLabels(iLabels);
             settransducerTypes(iTransducerTypes);
             setphysicalDimensions(iPhysicalDimensions);
@@ -115,30 +136,30 @@ namespace EDFLibrary.EDFHeader
                 signal.digitalMaximum = iDigitalMaximums[i];
                 signal.preFiltering = iPrefilterings[i];
                 signal.numSamples = iNumSamplesPerRecords[i];
-                ObjectHolder.signals.Add(signal);
+                edfSignals.Add(signal);
 
             }
         }
 
         /// <summary>
-        /// returns the final header
+        /// Returns final header
         /// </summary>
         /// <returns></returns>
         public string generateEDFHeader()
         {
             string header = "";
-            //initialise the numbytes block - just for the start
-            numbytes = BuildHeader.buildHeader((Convert.ToString(256 + Convert.ToInt32(ns) * 256)), 8);
+            //initialise the numbytes block based on the formula 256 + 256 * ns
+            numbytes = BuildEDFHeaderField.buildEDFHeaderField((Convert.ToString(256 + Convert.ToInt32(ns) * 256)), 8);
 
 
-            //build the end reserved block
-            reserved2 = BuildHeader.buildHeader("", Convert.ToInt32(ns) * 32);
+            //build the end reserved block, 32 bytes * ns
+            reserved2 = BuildEDFHeaderField.buildEDFHeaderField("", Convert.ToInt32(ns) * 32);
 
             //add basics
             header += edfVersion + localPatientIdent + localRecordingIdent + startDate + startTime + numbytes + reserved + numRecords +
                       durationRecord + ns;
 
-            //add advanced stuff
+            //add advanced fields
             foreach (string x in labels)
             {
                 header += x;
@@ -176,63 +197,56 @@ namespace EDFLibrary.EDFHeader
                 header += x;
             }
 
-
+            //add final reserved header block
             header += reserved2;
 
             return header;
         }
 
-        //physicalMinimums     
-        //physicalMaximums     
-        //digitalMinimums      
-        //digitalMaximums      
-        //prefilterings        
-        //numSamplesPerRecords 
-        //basic setters
-
+        //basic field setters
         private void setVersion(string iEdfVersion)
         {
-            edfVersion = BuildHeader.buildHeader(iEdfVersion, 8);
+            edfVersion = BuildEDFHeaderField.buildEDFHeaderField(iEdfVersion, 8);
         }
         private void setLocalPatientIdent(string iLocalPatientIdent)
         {
-            localPatientIdent = BuildHeader.buildHeader(iLocalPatientIdent, 80);
+            localPatientIdent = BuildEDFHeaderField.buildEDFHeaderField(iLocalPatientIdent, 80);
         }
         private void setLocalRecordingIdent(string iLocalRecordingIdent)
         {
-            localRecordingIdent = BuildHeader.buildHeader(iLocalRecordingIdent, 80);
+            localRecordingIdent = BuildEDFHeaderField.buildEDFHeaderField(iLocalRecordingIdent, 80);
         }
         private void setStartDate(string iStartDate)
         {
-            startDate = BuildHeader.buildHeader(iStartDate, 8);
+            startDate = BuildEDFHeaderField.buildEDFHeaderField(iStartDate, 8);
         }
         private void setStartTime(string iStartTime)
         {
-            startTime = BuildHeader.buildHeader(iStartTime, 8);
+            startTime = BuildEDFHeaderField.buildEDFHeaderField(iStartTime, 8);
         }
-        private void setReserved(string iReserved)
+        private void setReserved(string iReserved) //special setter, ensure than reserved falls within the accepted fields
         {
 
 
             if (iReserved == EDFReserved.EDF_CONTINUOUS || iReserved == EDFReserved.EDF_DISCONTINUOUS)
-                reserved = BuildHeader.buildHeader(iReserved, 44);
+                reserved = BuildEDFHeaderField.buildEDFHeaderField(iReserved, 44);
             else
-                throw new ApplicationException("Reserved block only accepts EDF+C or EDF+D, please try again");
+                throw new ArgumentException("Reserved block only accepts EDF+C or EDF+D, please try again");
 
             //Reserved field -> uncomment below to override, just plain 44 bytes, this file will not be EDF+ compatible anymore
             // reserved = BuildHeader.buildHeader("", 44);
         }
         private void setNumRecords(string iNumRecords = "-1") //-1 signifies unknwon
         {
-            numRecords = BuildHeader.buildHeader(iNumRecords, 8);
+            numRecords = BuildEDFHeaderField.buildEDFHeaderField(iNumRecords, 8);
         }
         private void setDurationRecord(string iDurationRecord)
         {
-            durationRecord = BuildHeader.buildHeader(iDurationRecord, 8);
+            durationRecord = BuildEDFHeaderField.buildEDFHeaderField(iDurationRecord, 8);
         }
         private void setNs(string iNs)
         {
-            ns = BuildHeader.buildHeader(Convert.ToString(Convert.ToInt32(iNs) + 1), 4); //add 1 so that annotations are enforced under EDF+
+            ns = BuildEDFHeaderField.buildEDFHeaderField(Convert.ToString(Convert.ToInt32(iNs) + 1), 4); //add 1 so that annotations are enforced under EDF+
         }
 
 
@@ -244,7 +258,7 @@ namespace EDFLibrary.EDFHeader
             {
                 foreach (string label in iLabels)
                 {
-                    labels.Add(BuildHeader.buildHeader(label, 16));
+                    labels.Add(BuildEDFHeaderField.buildEDFHeaderField(label, 16));
                 }
             }
 
@@ -255,7 +269,7 @@ namespace EDFLibrary.EDFHeader
             {
                 foreach (string transducerType in itransducerTypes)
                 {
-                    transducerTypes.Add(BuildHeader.buildHeader(transducerType, 80));
+                    transducerTypes.Add(BuildEDFHeaderField.buildEDFHeaderField(transducerType, 80));
                 }
             }
 
@@ -266,7 +280,7 @@ namespace EDFLibrary.EDFHeader
             {
                 foreach (string physicalDimension in iphysicalDimensions)
                 {
-                    physicalDimensions.Add(BuildHeader.buildHeader(physicalDimension, 8));
+                    physicalDimensions.Add(BuildEDFHeaderField.buildEDFHeaderField(physicalDimension, 8));
                 }
             }
 
@@ -277,7 +291,7 @@ namespace EDFLibrary.EDFHeader
             {
                 foreach (string physicalMinimum in iphysicalMinimums)
                 {
-                    physicalMinimums.Add(BuildHeader.buildHeader(physicalMinimum, 8));
+                    physicalMinimums.Add(BuildEDFHeaderField.buildEDFHeaderField(physicalMinimum, 8));
                 }
             }
 
@@ -288,7 +302,7 @@ namespace EDFLibrary.EDFHeader
             {
                 foreach (string physicalmaximum in iphysicalmaximums)
                 {
-                    physicalMaximums.Add(BuildHeader.buildHeader(physicalmaximum, 8));
+                    physicalMaximums.Add(BuildEDFHeaderField.buildEDFHeaderField(physicalmaximum, 8));
                 }
             }
 
@@ -299,7 +313,7 @@ namespace EDFLibrary.EDFHeader
             {
                 foreach (string digitalMinimum in idigitalMinimums)
                 {
-                    digitalMinimums.Add(BuildHeader.buildHeader(digitalMinimum, 8));
+                    digitalMinimums.Add(BuildEDFHeaderField.buildEDFHeaderField(digitalMinimum, 8));
                 }
             }
 
@@ -310,7 +324,7 @@ namespace EDFLibrary.EDFHeader
             {
                 foreach (string digitalmaximum in idigitalmaximums)
                 {
-                    digitalMaximums.Add(BuildHeader.buildHeader(digitalmaximum, 8));
+                    digitalMaximums.Add(BuildEDFHeaderField.buildEDFHeaderField(digitalmaximum, 8));
                 }
             }
 
@@ -321,7 +335,7 @@ namespace EDFLibrary.EDFHeader
             {
                 foreach (string prefiltering in iprefilterings)
                 {
-                    prefilterings.Add(BuildHeader.buildHeader(prefiltering, 80));
+                    prefilterings.Add(BuildEDFHeaderField.buildEDFHeaderField(prefiltering, 80));
                 }
             }
 
@@ -332,13 +346,13 @@ namespace EDFLibrary.EDFHeader
             {
                 foreach (string numSamplesPerRecord in inumSamplesPerRecords)
                 {
-                    numSamplesPerRecords.Add(BuildHeader.buildHeader(numSamplesPerRecord, 8));
+                    numSamplesPerRecords.Add(BuildEDFHeaderField.buildEDFHeaderField(numSamplesPerRecord, 8));
                 }
             }
 
         }
 
-      
+
 
 
 

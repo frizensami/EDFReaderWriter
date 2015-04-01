@@ -7,7 +7,7 @@
     <ProjectGuid>{60B39EB4-5BCE-495D-BD60-39E183216A59}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EDFReaderWriter</RootNamespace>
+    <RootNamespace>EDFLibrary</RootNamespace>
     <AssemblyName>EDFReaderWriter</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -83,11 +83,11 @@
     <Compile Include="EDFLibrary\EDFData\Types\EDFDataRecord.cs" />
     <Compile Include="EDFLibrary\EDFData\Types\EDFDataRecordSignal.cs" />
     <Compile Include="EDFLibrary\EDFData\Types\EDFDataRecordSignalSample.cs" />
-    <Compile Include="EDFLibrary\EDFHeader\StripHeaderField.cs" />
+    <Compile Include="EDFLibrary\EDFHeader\ConvertEDFHeaderField.cs" />
     <Compile Include="EDFLibrary\EDFSignal.cs" />
     <Compile Include="EDFLibrary\EDFData\Types\TAL\EDFTALAnnotation.cs" />
     <Compile Include="EDFLibrary\EDFData\Generator\FakeDataGenerator.cs" />
-    <Compile Include="Utility Classes\ObjectHolder.cs" />
+    <Compile Include="EDFLibrary\Utility Classes\ObjectHolder.cs" />
     <Page Include="AdvancedDetailsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -104,7 +104,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EDFLibrary\EDFHeader\BuildHeader.cs" />
+    <Compile Include="EDFLibrary\EDFHeader\BuildEDFHeaderField.cs" />
     <Compile Include="EDFLibrary\EDFHeader\EDFHeader.cs" />
     <Compile Include="EDFLibrary\EDFHeader\EDFReserved.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -155,6 +155,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="EDFLibrary\LICENSE.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

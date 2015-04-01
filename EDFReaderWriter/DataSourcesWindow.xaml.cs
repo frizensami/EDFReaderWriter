@@ -7,20 +7,21 @@ using Microsoft.Win32;
 
 
 using EDFLibrary.EDFData.Manager;
-using EDFReaderWriter.Utility_Classes;
-namespace EDFReaderWriter
+using EDFLibrary.Utility_Classes;
+namespace EDFLibrary
 {
     /// <summary>
     /// Interaction logic for DataSources.xaml
     /// </summary>
     public partial class DataSourcesWindow : Window
     {
-       
+        EDFDataManager manager;
         public DataSourcesWindow()
         {
 
             InitializeComponent();
-            List<EDFSignal> signals = ObjectHolder.signals;
+            
+            List<EDFSignal> signals = ObjectHolder.EDFHeaderHolder.edfSignals;
             foreach (EDFSignal signal in signals)
             {
                 cbSignals.Items.Add(signal.label);
@@ -35,9 +36,8 @@ namespace EDFReaderWriter
             dlg.Filter = "EEG cnt file|*.cnt";
             if (dlg.ShowDialog() == true)
             {
-                EDFDataManager manager = new EDFDataManager();
-                manager.addFile(EDFDataManager.FileTypes.zeoEEGCNT, dlg.FileName,cbSignals.SelectedIndex); //-1 for 0 based
-                manager.generateEDFData();
+                manager = new EDFDataManager();
+                manager.addFile(EDFDataManager.FileTypes.zeoEEGCNT, dlg.FileName, ObjectHolder.EDFHeaderHolder, cbSignals.SelectedIndex); //-1 for 0 based
             }
         }
 
@@ -58,7 +58,20 @@ namespace EDFReaderWriter
 
         private void btnGenerate_Click(object sender, RoutedEventArgs e)
         {
-
+            bool generate = true;
+            for (int i = 0; i < (ObjectHolder.EDFHeaderHolder.edfSignals.Count - 1); i++)
+            {
+                EDFSignal signal = ObjectHolder.EDFHeaderHolder.edfSignals[i];
+                if (signal.samples == null)
+                {
+                    System.Windows.MessageBox.Show("One or more signals have not had their data sets added!");
+                    generate = false;
+                    break;
+                }
+                    
+            }
+            if (generate)
+                manager.generateEDFData();
         }
     }
 }

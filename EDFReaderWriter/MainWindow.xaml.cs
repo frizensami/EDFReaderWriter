@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using EDFReaderWriter.Utility_Classes;
+using EDFLibrary.Utility_Classes;
 using EDFLibrary.EDFHeader;
-namespace EDFReaderWriter
+namespace EDFLibrary
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -60,7 +60,7 @@ namespace EDFReaderWriter
             string ns = tbNs.Text;
             
 
-            EDFHeader newHeader = new EDFHeader(version, patient,recording,startDate,startTime,reserved,numRecords,durationRecord,ns);
+            EDFHeader.EDFHeader newHeader = new EDFHeader.EDFHeader(version, patient,recording,startDate,startTime,reserved,numRecords,durationRecord,ns);
             ObjectHolder.EDFHeaderHolder = newHeader; //store it here for access from other windows
 
             AdvancedDetailsWindow window = new AdvancedDetailsWindow();

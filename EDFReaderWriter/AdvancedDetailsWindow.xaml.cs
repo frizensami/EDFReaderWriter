@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using EDFReaderWriter.Utility_Classes;
+using EDFLibrary.Utility_Classes;
 using System.IO;
 using EDFLibrary.EDFHeader;
 
-namespace EDFReaderWriter
+namespace EDFLibrary
 {
     
     /// <summary>
@@ -27,7 +27,7 @@ namespace EDFReaderWriter
 
         int numSignals;
         bool[] saved;
-        EDFHeader header;
+        EDFHeader.EDFHeader header;
         public AdvancedDetailsWindow()
         {
             InitializeComponent();
@@ -133,7 +133,7 @@ namespace EDFReaderWriter
 
 
                 Console.WriteLine(header.generateEDFHeader());
-                StreamWriter writer = new StreamWriter(@"D:\out.edf");
+                StreamWriter writer = new StreamWriter(@"D:\out.edf"); //TODO allow people to specify the path
                 writer.Write(header.generateEDFHeader());
                 writer.Close();
 
