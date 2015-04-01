@@ -86,7 +86,7 @@ namespace EDFLibrary.EDFData.Manager
             Byte[][] annotationSignals;
             if (signals[signals.Count - 1].samples == null)
             {
-                //TODO Add annotations
+                //TODO Add annotations functionality above the default requirements
                 int numAnnotationBytes = ConvertEDFHeaderField.toInt32((signals[signals.Count - 1].numSamples)) * 2; // times 2 as we need number of bytes, not number of 2-byte ints.
 
                 DefaultAnnotationGenerator defGen = new DefaultAnnotationGenerator(ConvertEDFHeaderField.toInt32(header.numRecords), ConvertEDFHeaderField.toInt32(header.durationRecord), numAnnotationBytes);
@@ -129,7 +129,7 @@ namespace EDFLibrary.EDFData.Manager
 
                         newSignals[j] = newSignal; //copy the new signal into the signals array for this record
 
-                } //TODO what if the numSamples is not a clean multiple of the total number of samples in a signal? There will be uncopied samples 
+                } 
 
                 //handle annotations -> put into newSignals[signals.count - 1]
                 Byte[] annotationSignal = annotationSignals[i];
