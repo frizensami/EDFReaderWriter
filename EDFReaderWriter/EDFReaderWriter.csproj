@@ -72,8 +72,8 @@
     <Compile Include="AdvancedDetailsWindow.xaml.cs">
       <DependentUpon>AdvancedDetailsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CNTFile\EEGCntFile.cs" />
-    <Compile Include="CNTFile\Zeo\ZeoFloatToDigital.cs" />
+    <Compile Include="EDFLibrary\CNTFile\EEGCntFile.cs" />
+    <Compile Include="EDFLibrary\CNTFile\Zeo\ZeoFloatToDigital.cs" />
     <Compile Include="DataSourcesWindow.xaml.cs">
       <DependentUpon>DataSourcesWindow.xaml</DependentUpon>
     </Compile>
