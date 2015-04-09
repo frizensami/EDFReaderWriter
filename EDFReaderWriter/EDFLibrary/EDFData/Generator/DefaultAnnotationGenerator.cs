@@ -16,14 +16,12 @@ namespace EDFLibrary.EDFLibrary.EDFData.Generator
             for (int i = 0; i < numRecords; i++)
             {
                 //define basic parameters for the default annotation
-                bool firstTal = true;
                 char onsetSign = '+';
                 double onset = recordDuration * i;
-                double duration = 0;
                 string[] annotations = new string[1]{"Start of Data Record"}; //use this as default annotation for every record
 
                 //create the actual annotation
-                EDFTALAnnotation annotation = new EDFTALAnnotation(firstTal, onsetSign,onset,duration,annotations,numAnnotationBytes);
+                EDFTALAnnotation annotation = new EDFTALAnnotation(onsetSign,onset, annotations,numAnnotationBytes);
 
 
                 annotationSignals[i] = annotation.builtAnnotation.ToArray();
