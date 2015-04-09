@@ -22,7 +22,7 @@ namespace EDFLibrary.EDFLibrary.EDFData.Generator
 
                 //create the actual annotation
                 EDFTALAnnotation annotation = new EDFTALAnnotation(onsetSign,onset, annotations,numAnnotationBytes);
-
+                 
 
                 annotationSignals[i] = annotation.builtAnnotation.ToArray();
             }
