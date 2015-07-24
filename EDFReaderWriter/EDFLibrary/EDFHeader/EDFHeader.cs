@@ -56,11 +56,15 @@ namespace EDFLibrary.EDFHeader
         public List<string> prefilterings { get; private set; }
         public List<string> numSamplesPerRecords { get; private set; }
 
+        //path info
+        public string FilePath { get; set; }
+
         public List<EDFSignal> edfSignals;
 
         string reserved2;
 
         string numbytes; //calculate last -> number of bytes in header
+
 
 
 
@@ -162,6 +166,7 @@ namespace EDFLibrary.EDFHeader
             }
         }
 
+        
         /// <summary>
         /// Returns final header
         /// </summary>

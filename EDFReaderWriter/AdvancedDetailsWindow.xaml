@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="AdvancedDetailsWindow" Height="570.4" Width="775.6">
     <Grid>
-        <TextBox x:Name="tbLabel" HorizontalAlignment="Left" Height="20" Margin="86,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179"  Text="EEG Zeo-Wireless" TextChanged="tbLabel_TextChanged"/>
+        <TextBox x:Name="tbLabel" HorizontalAlignment="Left" Height="20" Margin="86,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179"  Text="EEG Zeo-Wireless" TextChanged="tbLabel_TextChanged" MaxLength="16"/>
         <Label Content="Label" HorizontalAlignment="Left" Margin="32,36,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cbSignals" HorizontalAlignment="Left" Height="21" Margin="17,10,0,0" VerticalAlignment="Top" Width="267" SelectionChanged="cbSignals_SelectionChanged"/>
         <TextBox x:Name="tbTransducerType" HorizontalAlignment="Left" Height="20" Margin="86,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" Text="Dry Electrodes"/>
@@ -25,9 +25,9 @@
         <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Height="24" Margin="86,507,0,0" VerticalAlignment="Top" Width="93" Click="ButtonSave_Click"/>
         <Label x:Name="lblSaved" Content="Saved" HorizontalAlignment="Left" Height="29" Margin="183,472,0,0" VerticalAlignment="Top" Width="63" Background="#FF04FF2B"/>
         <Label x:Name="lblNotSaved" Content="Not Saved" HorizontalAlignment="Left" Height="30" Margin="17,471,0,0" VerticalAlignment="Top" Width="70" Background="#FFFF0202"/>
-        <Button x:Name="btnGenerate" Content="Generate" HorizontalAlignment="Left" Height="24" Margin="314,489,0,0" VerticalAlignment="Top" Width="93" Click="ButtonGenerate_Click"/>
+        <Button x:Name="btnGenerate" Content="Generate Header" HorizontalAlignment="Left" Height="24" Margin="314,489,0,0" VerticalAlignment="Top" Width="109" Click="ButtonGenerate_Click"/>
         <Label Content="Label" HorizontalAlignment="Left" Margin="506,16,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbLabel_Copy" HorizontalAlignment="Left" Height="20" Margin="582,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179"  Text="EDF Annotations"/>
+        <TextBox x:Name="tbLabel_Copy" HorizontalAlignment="Left" Height="20" Margin="582,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179"  Text="EDF Annotations" MaxLength="16"/>
         <TextBox x:Name="tbPhysicalDimension_Copy" HorizontalAlignment="Left" Height="20" Margin="582,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179"/>
         <Label Content="Physical &#xA;DImension" HorizontalAlignment="Left" Margin="495,74,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbPhysicalMinimum_Copy" HorizontalAlignment="Left" Height="20" Margin="582,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="179" TextChanged="tbPhysicalMinimum_Copy_TextChanged" Text="-32768"/>

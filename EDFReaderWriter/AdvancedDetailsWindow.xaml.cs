@@ -130,10 +130,10 @@ namespace EDFLibrary
 
                 header.setNSDependantData(labels, transducerTypes, physicalDimensions, physicalMinimums, physicalMaximums, digitalMinimums, digitalMaximums, prefilterings, numSamplesPerRecords);
 
-
+                header.FilePath = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds + "-out.edf";
 
                 Console.WriteLine(header.generateEDFHeader());
-                StreamWriter writer = new StreamWriter(@"D:\out.edf"); //TODO allow people to specify the path
+                StreamWriter writer = new StreamWriter(header.FilePath); //TODO allow people to specify the path
                 writer.Write(header.generateEDFHeader());
                 writer.Close();
 

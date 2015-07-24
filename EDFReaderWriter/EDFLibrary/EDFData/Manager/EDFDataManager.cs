@@ -29,17 +29,17 @@ namespace EDFLibrary.EDFData.Manager
         /// <param name="fileType"></param>
         /// <param name="path"></param>
         /// <param name="signalIndex"></param>
-        public EDFHeader.EDFHeader addFile(FileTypes fileType, string path, EDFHeader.EDFHeader iHeader, int signalIndex) 
+        public EDFHeader.EDFHeader addFile(FileTypes fileType, string path, EDFHeader.EDFHeader iHeader, int signalIndexStart, int signalIndexEnd) 
         {
 
             Console.WriteLine("Adding file {0}", path);
             switch (fileType)
             {
                 case FileTypes.zeoEEGCNT:
-                    return addZeoEEGCNT(path, iHeader, signalIndex);
+                    return addZeoEEGCNT(path, iHeader, signalIndexStart, signalIndexEnd);
                 default:
                     return iHeader;
-                    throw new ArgumentException("Adding file failed.");
+                    throw new ArgumentException("Adding file failed. Specfied filetype argument incorrect");
             }
 
 
@@ -50,7 +50,7 @@ namespace EDFLibrary.EDFData.Manager
         /// </summary>
         /// <param name="path"></param>
         /// <param name="signalIndex"></param>
-        private EDFHeader.EDFHeader addZeoEEGCNT(string path, EDFHeader.EDFHeader iHeader, int signalIndex)
+        private EDFHeader.EDFHeader addZeoEEGCNT(string path, EDFHeader.EDFHeader iHeader, int signalIndexStart, int signalIndexEnd)
         {
             EDFHeader.EDFHeader header = iHeader;
             EEGCntFile file = new EEGCntFile();
@@ -59,23 +59,33 @@ namespace EDFLibrary.EDFData.Manager
             //file.ReadCnt(System.IO.Path.GetFullPath(@"test3.cnt"));
             file.ReadCnt(path);
             float[,] eeg_data = file.eeg_data;
+            //add code to deal with multiple signals here
+
             int sampleSize = eeg_data.GetLength(1);
-            EDFDataRecordSignalSample[] samples = new EDFDataRecordSignalSample[sampleSize];
-            for (int i = 0; i < eeg_data.GetLength(1); i++)
+            
+
+            for (int j = signalIndexStart, k = 0; j <= signalIndexEnd; j++, k++)
             {
-                float rawData = eeg_data[0, i]; //first index is static as we just want 1 channel of zeo data
-                Int16 digitalData = ZeoFloatToDigital.zeoFloatToDigital(rawData);
-                samples[i] = new EDFDataRecordSignalSample(digitalData);
-                //Console.WriteLine("Samples[{0}] = {1}", i, samples[i].sample);
+                EDFDataRecordSignalSample[] samples = new EDFDataRecordSignalSample[sampleSize];
+                for (int i = 0; i < eeg_data.GetLength(1); i++)
+                {
+                    //TODO get more than 1 channel of CNT data
+                    
+                    float rawData = eeg_data[k, i]; //k is the channel number
+                    Int16 digitalData = ZeoFloatToDigital.zeoFloatToDigital(rawData);
+                    samples[i] = new EDFDataRecordSignalSample(digitalData);
+                    //Console.WriteLine("Samples[{0}] = {1}", i, samples[i].sample);
+                }
+                header.edfSignals[j].samples = samples;
             }
-            header.edfSignals[signalIndex].samples = samples;
+               
             return header;
 
         }
         /// <summary>
         /// Main function to write all signals data to EDF
         /// </summary>
-        public void generateEDFData(EDFHeader.EDFHeader iHeader)
+        public void generateEDFData(EDFHeader.EDFHeader iHeader, string path)
         {
 
 
@@ -166,7 +176,7 @@ namespace EDFLibrary.EDFData.Manager
             
 
             //write to output EDF
-            using (BinaryWriter b = new BinaryWriter(File.Open(@"D:\out.edf", FileMode.Append))) //TODO allow file to be specified!
+            using (BinaryWriter b = new BinaryWriter(File.Open(path, FileMode.Append))) //TODO allow file to be specified!
             {
                 for (int i = 0; i < outData.Length; i++)
                 {
