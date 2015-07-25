@@ -28,7 +28,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x64</PlatformTarget>
@@ -52,7 +53,14 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>EDFLibrary.App</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CNT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\CNT.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -75,8 +83,7 @@
     <Compile Include="AdvancedDetailsWindow.xaml.cs">
       <DependentUpon>AdvancedDetailsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EDFLibrary\CNTFile\EEGCntFile.cs" />
-    <Compile Include="EDFLibrary\CNTFile\Zeo\ZeoFloatToDigital.cs" />
+    <Compile Include="EDFLibrary\CNTFileUtil\Zeo\ZeoFloatToDigital.cs" />
     <Compile Include="DataSourcesWindow.xaml.cs">
       <DependentUpon>DataSourcesWindow.xaml</DependentUpon>
     </Compile>

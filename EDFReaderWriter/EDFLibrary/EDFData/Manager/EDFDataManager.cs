@@ -1,5 +1,5 @@
-﻿using CNTFile;
-using CNTFile.Zeo;
+﻿
+using CNTFileUtil.Zeo;
 using EDFLibrary.EDFData.Types;
 using EDFLibrary.EDFHeader;
 using EDFLibrary.EDFLibrary.EDFData.Generator;
@@ -7,6 +7,8 @@ using EDFLibrary.Utility_Classes;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using CNT;
+
 
 namespace EDFLibrary.EDFData.Manager
 {
@@ -53,7 +55,7 @@ namespace EDFLibrary.EDFData.Manager
         private EDFHeader.EDFHeader addZeoEEGCNT(string path, EDFHeader.EDFHeader iHeader, int signalIndexStart, int signalIndexEnd)
         {
             EDFHeader.EDFHeader header = iHeader;
-            EEGCntFile file = new EEGCntFile();
+            CntFile file = new CntFile();
 
 
             //file.ReadCnt(System.IO.Path.GetFullPath(@"test3.cnt"));
